@@ -1,0 +1,10 @@
+<a [routerLink]="[index]"
+  class="list-group-item clearfix release-preview">
+  <div class="row">
+    <span class="release-number col-xs-2">{{ release.releaseNumber }}</span>
+    <span class="col-xs-5">
+      <img class="album-art-preview" src="{{release.albumArtSmall}}" />
+    </span>
+    <span class="release-artist-preview col-xs-5">{{ release.artist }} - {{ release.title }}</span>
+  </div>
+</a>

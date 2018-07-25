@@ -1,0 +1,43 @@
+.footer {
+  text-align: center;
+  padding: 20px;
+}
+
+.icons {
+
+}
+
+.icon-link:hover {
+  text-decoration: none;
+}
+
+.icon {
+
+  margin: 0 20px;
+}
+
+.bandcamp {
+  height: 40px;
+}
+
+.facebook {
+  height: 30px;
+}
+
+.instagram {
+  height: 30px;
+}
+
+.twitter {
+  height: 35px;
+}
+
+.youtube {
+  height: 35px;
+}
+
+@media(max-width: 767px) {
+  .icon {
+    margin: 0 10px;
+  }
+}

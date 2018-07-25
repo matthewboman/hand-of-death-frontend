@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-article-preview
+      *ngFor="let article of articles;"
+      [article]="article"
+      [index]="article.id">
+    </app-article-preview>
+  </div>
+</div>

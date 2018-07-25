@@ -1,0 +1,26 @@
+<div class="tour-dates-container" *ngIf="tourDates">
+
+  <ul class="dates">
+    <li class="date" *ngFor="let date of tourDates">
+      <div class="row">
+        <div class="col-md-2">
+          <span>{{ date.eventDate.toLocaleDateString() }}</span>
+        </div>
+        <div class="col-md-2">
+          <span>{{ date.eventCity}}</span>
+        </div>
+        <div class="col-md-6">
+          <span>{{ date.eventName }}</span>
+        </div>
+        <div class="col-md-2">
+          <a href="{{date.eventLink}}" class="event-link" target="_blank">
+            Buy tickets
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <p *ngIf="!tourDates.length">The artist currently has no tour dates</p>
+
+</div>

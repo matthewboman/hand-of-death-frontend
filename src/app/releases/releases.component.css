@@ -1,0 +1,14 @@
+.release-component {
+  overflow: hidden;
+  height: 80vh;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+@media(max-width: 767px) {
+  .preview {
+    height: 30vh;
+    /*overflow: hidden;*/
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div ngbDropdown class="dropdown">
+      <button class="mobile-navbar"
+        ngbDropdownToggle>
+        <img class="menu-image" src="../../assets/img/header.png" />
+      </button>
+      <div ngbDropdownMenu
+        aria-labelledby="dropdownBasic1"
+        class="dropdown-menu">
+        <ul class="nav navbar-nav">
+          <li
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a href="http://errorrecords.storenvy.com/collections/1355454-hand-of-death"
+              class="link" target="_blank">Store</a>
+          </li>
+          <li
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/releases" class="link">Discography</a>
+          </li>
+          <li
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/tour" class="link">Tour Dates</a>
+          </li>
+          <li
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/artists" class="link">Artists</a>
+          </li>
+          <!-- <li
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/news" class="link">News</a>
+          </li> -->
+          <li
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/about" class="link">Info</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
