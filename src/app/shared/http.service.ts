@@ -10,7 +10,7 @@ import { AboutPage } from '../about/about.model';
 
 @Injectable()
 export class HttpService {
-  private aboutUrl = `/api/about`;
+  private aboutUrl = `http://api.handofdeathrecords.com/api/about`;
   private aboutPage: AboutPage;
   private spotifyID = `1a55540a8b9640c1906e22d5a3d78447`;
   private spotifyPrivate = `8ccfe880e47f404dbc26b31a1c2c174e8ccfe880e47f404dbc26b31a1c2c174e`;
@@ -56,7 +56,7 @@ export class HttpService {
   // }
 
   addEmailToList(email: string): Observable<any> {
-    return this.http.post(`/api/add-email?_format=json`, { email })
+    return this.http.post(`http://api.handofdeathrecords.com/api/add-email?_format=json`, { email })
       .map((res: Response) => res.status)
   }
 
