@@ -10,7 +10,7 @@ import { Artist } from './artist.model';
 
 @Injectable()
 export class ArtistService {
-  private artistsURL = `/api/artists`
+  private artistsURL = `http://api.handofdeathrecords.com/api/artists`
   private artists: Artist[];
 
   constructor(private http: Http) {}

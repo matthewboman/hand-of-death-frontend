@@ -11,7 +11,7 @@ import { TourDate } from './tour-date.model';
 
 @Injectable()
 export class TourService {
-  private touringUrl: string = `/api/tour`;
+  private touringUrl: string = `http://api.handofdeathrecords.com/api/tour`;
   private SONGKICK_API_KEY: string = `wBW2144SSOTFdqaF`;
   private touringArtists: TouringArtist[];
 
