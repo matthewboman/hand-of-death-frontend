@@ -1,13 +1,13 @@
 .release-detail {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* height: 100vh; */
+  /* overflow-x: hidden; */
+  /* overflow-y: auto; */
   position: relative;
   /* hack to hide scrollbar */
-  padding-right: 20px;
-  margin-right: -40px;
+  /* padding-right: 20px; */
+  /* margin-right: -40px; */
   /* show the whole thing */
-  padding-bottom: 200px;
+  /* padding-bottom: 200px; */
 
   color: #ddd;
 }
@@ -46,7 +46,7 @@ iframe {
 @media(max-width: 767px) {
   .release-detail {
     padding-top: 2vh;
-    padding-bottom: 70vh;
+    /* padding-bottom: 70vh; */
   }
   .album-art {
     max-width: 70vw;

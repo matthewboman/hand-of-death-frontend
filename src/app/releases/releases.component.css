@@ -1,6 +1,6 @@
 .release-component {
-  overflow: hidden;
-  height: 80vh;
+  /* overflow: hidden; */
+  /* height: 80vh; */
   padding-top: 10px;
   padding-bottom: 20px;
 }
@@ -9,6 +9,7 @@
   .preview {
     height: 30vh;
     /*overflow: hidden;*/
-    overflow-y: auto;
+    overflow: scroll;
+    padding-bottom: 100px;
   }
 }
