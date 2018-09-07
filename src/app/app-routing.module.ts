@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, Routes, RouterModule } from '@angular/router';
 
 import { AboutComponent } from './about/about.component';
+import { NewsComponent } from './news/news.component';
 import { StoreComponent } from './store/store.component';
 
 const appRoutes: Routes = [
-  { path: '', component: AboutComponent, pathMatch: 'full' },
+  // { path: '', component: AboutComponent, pathMatch: 'full' },
+  { path: '', component: NewsComponent, pathMatch: 'full' },
+
   { path: 'artists', loadChildren: './artists/artists.module#ArtistsModule' },
   { path: 'about', component: AboutComponent },
   { path: 'news', loadChildren: './news/news.module#NewsModule' },

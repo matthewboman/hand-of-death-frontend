@@ -10,7 +10,7 @@ import { Article } from './article.model';
 
 @Injectable()
 export class NewsService {
-  private articlesURL = `http://api.handofdeathrecords.com/api/articles`;
+  private articlesURL = `http://api.handofdeathrecords.com/api/news`;
   private articles: Article[];
 
   constructor(private http: Http) {}
@@ -34,13 +34,15 @@ export class NewsService {
     return this.http.get(`${this.articlesURL}?_format=json`)
       .map((res: Response) => res.json())
       .map(returnedArticles => {
+        console.log('returned', returnedArticles)
         const articles = returnedArticles.map(article => new Article(
           article.nid[0].value,
-          article.field_title[0].value,
-          article.body[0].value,
-          article.field_article_image.length ? article.field_article_image[0].url : '',
-          article.field_publish_date[0].value
-        ))
+          article.title.length ? article.title[0].value : '',
+          article.body.length ? article.body[0].value: '',
+          article.field_image.length ? article.field_image[0].url : '',
+          article.field_publish_date.length ? article.field_publish_date[0].value : '',
+        ));
+        console.log('article is', articles[0])
         this.articles = articles;
         return articles;
       })

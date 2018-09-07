@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div class="row news-component">
+  <div class="col-md-10 col-md-offset-1">
+    <app-article-preview
+      *ngFor="let article of articles;"
+      [article]="article"
+      [index]="article.id">
+    </app-article-preview>
+  </div>
+</div>
