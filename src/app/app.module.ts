@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AboutComponent } from './about/about.component';
+import { ArticlePreviewComponent } from './news/article-preview/article-preview.component'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeaderComponent } from './core/header/header.component';
 import { HttpService } from './shared/http.service';
+import { NewsService } from './news/news.service';
 import { MobileNavbarComponent } from './core/mobile-navbar/mobile-navbar.component';
 import { NewsComponent } from './news/news.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
@@ -18,6 +20,8 @@ import { StoreComponent } from './store/store.component';
 @NgModule({
   declarations: [
     AboutComponent,
+    ArticlePreviewComponent,
+    NewsComponent,
     AppComponent,
     FooterComponent,
     HeaderComponent,
@@ -34,6 +38,7 @@ import { StoreComponent } from './store/store.component';
   ],
   providers: [
     HttpService,
+    NewsService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,21 +1,15 @@
 .article-preview {
-
+  color: #fff;
 }
 .article-preview-title {
 
 }
-.article-preview-title:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
 
 .article-image {
-  height: 250px;
-  max-width: 350px;
+  display: block;
+  margin: 0 auto;
 }
 
 .article-preview-body {
-  height: 250px;
-  padding: 20px;
-  overflow: hidden;
+
 }
