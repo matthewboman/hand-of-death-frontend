@@ -10,7 +10,7 @@ import { Article } from './article.model';
 
 @Injectable()
 export class NewsService {
-  private articlesURL = `http://api.handofdeathrecords.com/api/news`;
+  private articlesURL = `https://api.handofdeathrecords.com/api/news`;
   private articles: Article[];
 
   constructor(private http: Http) {}

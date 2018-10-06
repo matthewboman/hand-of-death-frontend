@@ -11,7 +11,7 @@ import { TourDate } from './tour-date.model';
 
 @Injectable()
 export class TourService {
-  private touringUrl: string = `http://api.handofdeathrecords.com/api/tour`;
+  private touringUrl: string = `https://api.handofdeathrecords.com/api/tour`;
   private SONGKICK_API_KEY: string = `wBW2144SSOTFdqaF`;
   private touringArtists: TouringArtist[];
 
@@ -47,7 +47,7 @@ export class TourService {
   }
 
   getTourDates(artist_id: string): Observable<any> {
-    return this.http.get(`http://api.songkick.com/api/3.0/artists/${artist_id}/calendar.json?apikey=${this.SONGKICK_API_KEY}`)
+    return this.http.get(`https://api.songkick.com/api/3.0/artists/${artist_id}/calendar.json?apikey=${this.SONGKICK_API_KEY}`)
       .map((res: Response) => res.json().resultsPage.results.event || [])
       .map(concerts => concerts
         .map(concert => new TourDate(
