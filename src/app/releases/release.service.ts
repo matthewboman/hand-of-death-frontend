@@ -10,7 +10,7 @@ import { Release } from './release.model';
 
 @Injectable()
 export class ReleaseService {
-  private releasesURL = `http://api.handofdeathrecords.com/api/releases`;
+  private releasesURL = `https://api.handofdeathrecords.com/api/releases`;
   private releases: Release[];
 
   constructor(private http: Http) {}
