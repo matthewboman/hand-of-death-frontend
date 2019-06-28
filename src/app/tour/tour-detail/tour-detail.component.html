@@ -1,0 +1,26 @@
+<div *ngIf="tourDates">
+
+  <ul>
+    <li *ngFor="let date of tourDates">
+      <div>
+        <div>
+          <span>{{ date.eventDate.toLocaleDateString() }}</span>
+        </div>
+        <div>
+          <span>{{ date.eventCity}}</span>
+        </div>
+        <div>
+          <span>{{ date.eventName }}</span>
+        </div>
+        <div>
+          <a href="{{date.eventLink}}" target="_blank">
+            Buy tickets
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <p *ngIf="!tourDates.length">The artist currently has no tour dates</p>
+
+</div>

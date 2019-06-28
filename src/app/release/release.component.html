@@ -1,0 +1,12 @@
+<div>
+  <div>
+    <app-release-preview
+      *ngFor="let release of releases;"
+      [release]="release"
+      [index]="release.id">
+    </app-release-preview>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <div>
+      <img src="../../assets/img/powered-by-songkick-white.png" />
+    </div>
+    <app-tour-preview
+      *ngFor="let artist of touringArtists;"
+      [artist]="artist"
+      [index]="artist.artistId">
+    </app-tour-preview>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

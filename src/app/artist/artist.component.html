@@ -1,0 +1,12 @@
+<div>
+  <div>
+    <app-artist-preview
+      *ngFor="let artist of artists;"
+      [artist]="artist"
+      [index]="artist.id">
+    </app-artist-preview>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
