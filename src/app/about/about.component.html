@@ -1,6 +1,20 @@
 <div *ngIf="aboutPage">
-  <div [innerHTML]="aboutPage.body">
+  <div [innerHTML]="aboutPage.body"></div>
+
+  <div class *ngFor="let distributor of aboutPage.distributors">
+    <div [innerHTML]="distributor"></div>
   </div>
+
   <img src="{{ aboutPage.imageUrl }}" >
+
+  <div>
+    <form #f="ngForm" (ngSubmit)="submitEmail(f)" novalidate>
+      <label for="email">
+        Enter your email to sign up for our mailing list:
+      </label>
+      <input id="email" name="email" ngModel required />
+      <button>Submit</button>
+    </form>
+  </div>
 
 </div>

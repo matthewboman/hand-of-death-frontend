@@ -9,12 +9,13 @@ import { About } from './about/about';
   providedIn: 'root'
 })
 export class HttpService {
-  private aboutUrl = `https://api.handofdeathrecords.com/api/about/?_format=json`;
+  private ABOUT_URL = `https://api.handofdeathrecords.com/api/about/?_format=json`;
+  private SUBSCRIPTION_URL = 'https://api.handofdeathrecords.com/api/add-email?_format=json';
 
   constructor(private http: HttpClient) { }
 
   getAboutPage(): Observable<About> {
-    return this.http.get(this.aboutUrl)
+    return this.http.get(this.ABOUT_URL)
       .pipe(
         map((res) => res[0]) // Drupal returns an array even though there is only one element
       )
@@ -26,6 +27,13 @@ export class HttpService {
             data.field_distributors.map(d => d.value)
           )
         )
+      );
+  }
+
+  addEmailToList(email: string): Observable<any> {
+    return this.http.post(this.SUBSCRIPTION_URL, { email })
+      .pipe(
+        map((res: any) => res.status)
       );
   }
 }

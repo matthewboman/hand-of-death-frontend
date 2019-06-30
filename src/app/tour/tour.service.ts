@@ -35,7 +35,7 @@ export class TourService {
   getTourDates(id: string): Observable<TourDate[]> {
     return this.http.get(`${this.SONGKICK_URL}/${id}/calendar.json?apikey=${this.SONGKICK_API_KEY}`)
       .pipe(
-        map(res => {
+        map((res: any) => {
           const event = res.resultsPage.results.event || [];
           return event;
         })
