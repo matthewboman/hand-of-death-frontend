@@ -1,26 +1,29 @@
-<div *ngIf="tourDates">
-
-  <ul>
-    <li *ngFor="let date of tourDates">
-      <div>
-        <div>
-          <span>{{ date.eventDate.toLocaleDateString() }}</span>
-        </div>
-        <div>
-          <span>{{ date.eventCity}}</span>
-        </div>
-        <div>
-          <span>{{ date.eventName }}</span>
-        </div>
-        <div>
-          <a href="{{date.eventLink}}" target="_blank">
+<div class="tour-detail" *ngIf="tourDates">
+  <table class="table table-dark" *ngIf="tourDates.length">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Location</th>
+        <th scope="col">Info</th>
+        <th scope="col">Tickets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let date of tourDates">
+        <th scope="row">{{ date.eventDate.toLocaleDateString() }}</th>
+        <td>{{ date.eventCity}}</td>
+        <td>{{ date.eventName }}</td>
+        <td>
+          <a class="buy" href="{{date.eventLink}}" target="_blank">
             Buy tickets
           </a>
-        </div>
-      </div>
-    </li>
-  </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <p *ngIf="!tourDates.length">The artist currently has no tour dates</p>
+  <p *ngIf="!tourDates.length">
+    The artist currently has no tour dates
+  </p>
 
 </div>

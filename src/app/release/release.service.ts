@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { Release } from './release';
 
@@ -11,6 +11,10 @@ export class ReleaseService {
   private releases: Release[];
 
   constructor(private http: HttpClient) {}
+
+  private handleError(error: HttpResponseBase | any) {
+    return throwError(error.message);
+  }
 
   getReleases(): Observable<Release[]> {
     if (this.releases) {
@@ -35,6 +39,9 @@ export class ReleaseService {
           this.releases = releases;
           return releases;
         })
+      )
+      .pipe(
+        catchError(this.handleError)
       );
   }
 
@@ -66,6 +73,9 @@ export class ReleaseService {
           r.field_spotify[0] ? r.field_spotify[0].value : '',
           r.field_soundcloud[0] ? r.field_soundcloud[0].value : '',
         ))
+      )
+      .pipe(
+        catchError(this.handleError)
       );
   }
 }

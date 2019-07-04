@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { Artist } from './artist';
 
@@ -13,6 +13,10 @@ export class ArtistService {
 
   constructor(private http: HttpClient) {}
 
+  private handleError(error: HttpResponseBase | any) {
+    return throwError(error.message);
+  }
+
   getArtists(): Observable<Artist[]> {
     if (this.artists) {
       return of(this.artists);
@@ -20,7 +24,6 @@ export class ArtistService {
     return this.http.get(`${this.URL}?_format=json`)
       .pipe(
         map((data: any[]) => {
-          // console.log(data.constructor === Array)
           const artists = data.map(a => new Artist(
             a.nid[0].value,
             a.title[0].value,
@@ -34,6 +37,9 @@ export class ArtistService {
           return artists;
 
         })
+      )
+      .pipe(
+        catchError(this.handleError)
       );
   }
 
@@ -61,6 +67,9 @@ export class ArtistService {
           artist.field_spotify[0] ? artist.field_spotify[0].value : '',
           artist.field_soundcloud[0] ? artist.field_soundcloud[0].value : this.DEFAULT_SOUNDCLOUD,
         ))
+      )
+      .pipe(
+        catchError(this.handleError)
       );
   }
 }

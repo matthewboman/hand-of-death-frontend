@@ -11,6 +11,7 @@ import { TourService } from '../tour.service';
 })
 export class TourDetailComponent implements OnInit {
   tourDates: TourDate[];
+  errorMessage: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +29,10 @@ export class TourDetailComponent implements OnInit {
         this.tourService.getTourDates(params.id)
           .subscribe(
             dates => this.tourDates = dates,
-            error => console.log(error)
+            error => {
+              // console.log(error);
+              this.errorMessage = 'Unable to load tour information at this time';
+            }
           );
       }
     );

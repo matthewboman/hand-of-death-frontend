@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { TourDate, TouringArtist } from './tour';
 
@@ -14,6 +14,10 @@ export class TourService {
   private touringArtist: TouringArtist[];
 
   constructor(private http: HttpClient) {}
+
+  private handleError(error: HttpResponseBase | any) {
+    return throwError(error.message);
+  }
 
   getTouringArtists(): Observable<TouringArtist[]> {
     if (this.touringArtist) {
@@ -29,6 +33,9 @@ export class TourService {
           this.touringArtist = artists;
           return artists;
         })
+      )
+      .pipe(
+        catchError(this.handleError)
       );
   }
 
@@ -47,6 +54,9 @@ export class TourService {
           d.location.city,
           d.uri
         )))
+      )
+      .pipe(
+        catchError(this.handleError)
       );
   }
 }

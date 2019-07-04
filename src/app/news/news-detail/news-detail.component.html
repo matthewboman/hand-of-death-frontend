@@ -1,0 +1,8 @@
+<div class="article" *ngIf="article">
+  <img class="hero-image mb-4" src="{{ article.imageUrl }}" />
+  <div class="container">
+    <h2 class="text-center mb-4">{{ article.title }}</h2>
+    <!-- Create inside of div in CMS-->
+    <div [innerHTML]="article.body"></div>
+  </div>
+</div>

@@ -1,29 +1,31 @@
-<div *ngIf="release">
-  <h2>
+<div class="release-detail" *ngIf="release">
+  <h2 class="detail-title">
     {{ release.releaseNumber }}: {{ release.artist }} - {{ release.title }}
   </h2>
-  <img class="album-art" src="{{ release.albumArtLarge }}" />
-  <div [innerHTML]="release.description"></div>
 
-<!-- TODO: set iframe size -->
-  <iframe
-    *ngIf="release.soundcloud"
-    width="90%"
-    height="250"
-    scrolling="no"
-    frameborder="no"
-    [src]="release.soundcloud | iframe">
-  </iframe>
+    <div class="image-container">
+      <img class="album-art" src="{{ release.albumArtLarge }}" />
+    </div>
 
-  <iframe
-    *ngIf="release.spotify"
-    [src]="release.spotify | iframe"
-    width="380" height="380"
-    frameborder="0" allowtransparency="true">
-  </iframe>
+    <div [innerHTML]="release.description"></div>
 
-  <div>
-    <a href="{{ release.linkToSite }}" target="_blank">Band site</a>
-    <a href="{{ release.linkToStore }}" target="_blank">Buy album</a>
-  </div>
+    <iframe
+      *ngIf="release.soundcloud"
+      [width]="iframeWidth" [height]="iframeHeight"
+      scrolling="no"
+      frameborder="no"
+      [src]="release.soundcloud | iframe">
+    </iframe>
+
+    <iframe
+      *ngIf="release.spotify"
+      [src]="release.spotify | iframe"
+      [width]="iframeWidth" [height]="iframeHeight"
+      frameborder="0" allowtransparency="true">
+    </iframe>
+
+    <div class="links">
+      <a href="{{ release.linkToSite }}" target="_blank">Band site</a>
+      <a href="{{ release.linkToStore }}" target="_blank">Buy album</a>
+    </div>
 </div>

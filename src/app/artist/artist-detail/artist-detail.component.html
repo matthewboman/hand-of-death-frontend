@@ -1,31 +1,34 @@
-<div *ngIf="artist">
-  <a href="{{ artist.link }}" target="_blank">
-    {{ artist.name }}
-  </a>
+<div class="artist-detail" *ngIf="artist">
+  <h2 class="text-center detail-title mb-4">
+    <a class="name" href="{{ artist.link }}" target="_blank">
+      {{ artist.name }}
+    </a>
+  </h2>
 
-<!-- TODO set iframes the same way -->
+  <div class="image-container mb-4">
+    <img
+      *ngFor="let image of artist.images"
+      src="{{image}}"
+    />
+  </div>
+
+  <div class="bio mb-4" [innerHTML]="artist.bio"></div>
+
   <iframe
+    class="mb-4"
     *ngIf="artist.soundcloud"
-    width="90%"
-    height="250"
+    [width]="iframeWidth" [height]="iframeHeight"
     scrolling="no"
     frameborder="no"
     [src]="artist.soundcloud | iframe">
   </iframe>
 
   <iframe
+    class="mb-4"
     *ngIf="artist.spotify"
     [src]="artist.spotify | iframe"
     [width]="iframeWidth" [height]="iframeHeight"
     frameborder="0" allowtransparency="true">
   </iframe>
 
-  <div [innerHTML]="artist.bio">
-  </div>
-
-  <div>
-    <img
-      *ngFor="let image of artist.images"
-      src="{{image}}" />
-  </div>
 </div>

@@ -12,6 +12,7 @@ import { ReleaseService } from './release.service';
 export class ReleaseComponent implements OnInit, OnDestroy {
   releases: Release[];
   subscription: Subscription;
+  errorMessage: string;
 
   constructor(private releaseService: ReleaseService) { }
 
@@ -26,7 +27,10 @@ export class ReleaseComponent implements OnInit, OnDestroy {
   getReleases(): void {
     this.subscription = this.releaseService.getReleases().subscribe(
       releases => this.releases = releases,
-      error => console.log(error)
+      error => {
+        // console.log(error);
+        this.errorMessage = "Unable to display releases at this time";
+      }
     );
   }
 

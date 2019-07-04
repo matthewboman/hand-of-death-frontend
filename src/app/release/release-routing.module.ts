@@ -5,13 +5,8 @@ import { ReleaseComponent } from './release.component';
 import { ReleaseDetailComponent } from './release-detail/release-detail.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ReleaseComponent,
-    children: [
-      { path: ':id', component: ReleaseDetailComponent }
-    ] 
-  }
+  { path: '', component: ReleaseComponent, },
+  { path: ':id', component: ReleaseDetailComponent }
 ];
 
 @NgModule({

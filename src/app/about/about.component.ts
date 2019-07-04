@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { About } from './about';
-import { HttpService } from '../http.service';
+import { HttpService } from '../shared/http.service';
 
 @Component({
   selector: 'app-about',
@@ -22,7 +22,10 @@ export class AboutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.httpService.getAboutPage().subscribe(
       aboutPage => this.aboutPage = aboutPage,
-      error => console.log(error)
+      error => {
+        // console.log(error);
+        // this.errorMessage = "";
+      }
     );
   }
 
@@ -36,13 +39,11 @@ export class AboutComponent implements OnInit, OnDestroy {
     const { value : { email } } = form;
     this.errorMessage = '';
 
-    console.log(email)
-
     if (this.validateEmail(email)) {
-      // this.httpService.addEmailToList(email).subscribe(
-      //   status => this.successMessage = 'Thank you for subscribing',
-      //   error => this.errorMessage = 'We were unable to add your email'
-      // );
+      this.httpService.addEmailToList(email).subscribe(
+        status => this.successMessage = 'Thank you for subscribing',
+        error => this.errorMessage = 'We were unable to add your email'
+      );
     } else {
       this.errorMessage = 'Please enter a valid email';
     }

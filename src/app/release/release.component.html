@@ -1,12 +1,11 @@
-<div>
-  <div>
-    <app-release-preview
-      *ngFor="let release of releases;"
-      [release]="release"
-      [index]="release.id">
-    </app-release-preview>
-  </div>
-  <div>
-    <router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+      <app-release-preview
+        class="col-md-4 col-sm-12 mx-auto align-self-center"
+        align="center"
+        *ngFor="let release of releases;"
+        [release]="release"
+        [index]="release.id">
+      </app-release-preview>
   </div>
 </div>

@@ -12,6 +12,7 @@ import { ArtistService } from './artist.service';
 export class ArtistComponent implements OnInit, OnDestroy {
   artists: Artist[];
   subscription: Subscription;
+  errorMessage: string;
 
   constructor(private artistService: ArtistService) { }
 
@@ -25,8 +26,11 @@ export class ArtistComponent implements OnInit, OnDestroy {
 
   getArtists(): void {
     this.subscription = this.artistService.getArtists().subscribe(
-      artists => console.log(artists),
-      error => console.log(error)
+      artists => this.artists = artists,
+      error => {
+        // console.log(error);
+        this.errorMessage = "Currently no artists to display";
+      }
     );
   }
 

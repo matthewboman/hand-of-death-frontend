@@ -1,20 +1,28 @@
-<div *ngIf="aboutPage">
-  <div [innerHTML]="aboutPage.body"></div>
-
-  <div class *ngFor="let distributor of aboutPage.distributors">
-    <div [innerHTML]="distributor"></div>
-  </div>
+<div *ngIf="aboutPage" class="container about">
 
   <img src="{{ aboutPage.imageUrl }}" >
 
-  <div>
-    <form #f="ngForm" (ngSubmit)="submitEmail(f)" novalidate>
-      <label for="email">
-        Enter your email to sign up for our mailing list:
-      </label>
-      <input id="email" name="email" ngModel required />
-      <button>Submit</button>
-    </form>
+  <div class="row">
+    <div class="col-md-6" [innerHTML]="aboutPage.body"></div>
+  </div>
+
+  <div class="row" *ngFor="let distributor of aboutPage.distributors">
+    <div class="col-md-6" [innerHTML]="distributor"></div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="submitEmail(f)" novalidate>
+        <div class="form-group">
+          <label for="email">
+            Enter your email to sign up for our mailing list:
+          </label>
+          <input id="email" name="email" class="form-control" ngModel required />
+        </div>
+        <button type="submit" class="btn btn-outline-light">Submit</button>
+      </form>
+    </div>
   </div>
 
 </div>

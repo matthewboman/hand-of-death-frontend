@@ -13,6 +13,7 @@ import { IframePipe } from '../../shared/iframe.pipe';
 export class ReleaseDetailComponent implements OnInit {
   release: Release;
   id: string;
+  errorMessage: string;
 
   constructor(
     private releaseService: ReleaseService,
@@ -30,7 +31,10 @@ export class ReleaseDetailComponent implements OnInit {
         this.releaseService.getRelease(params.id)
           .subscribe(
             release => this.release = release,
-            error => console.log(error)
+            error => {
+              // console.log(error);
+              this.errorMessage = "Unable to display release details at this time";
+            }
           );
       }
     );

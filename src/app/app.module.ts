@@ -6,19 +6,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
-import { NewsComponent } from './news/news.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
+import { NewsModule } from './news/news.module'
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    NewsComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NewsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

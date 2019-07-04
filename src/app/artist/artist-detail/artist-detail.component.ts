@@ -15,6 +15,7 @@ export class ArtistDetailComponent implements OnInit {
   id: string;
   iframeWidth: number;
   iframeHeight: number;
+  errorMessage: string;
 
   constructor(
     private artistService: ArtistService,
@@ -35,7 +36,11 @@ export class ArtistDetailComponent implements OnInit {
       (params: Params) => {
         this.artistService.getArtist(params.id)
           .subscribe(
-            artist => this.artist = artist
+            artist => this.artist = artist,
+            error => {
+              // console.log(error);
+              this.errorMessage = "Unable to load details at this time";
+            }
           );
       }
     );

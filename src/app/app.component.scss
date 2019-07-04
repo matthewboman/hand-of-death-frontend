@@ -1,0 +1,14 @@
+/**
+ * Globals
+ */
+
+// tour-preview
+.preview {
+  display: block;
+  color: #fff;
+
+  &:hover {
+    text-decoration: none;
+    text-shadow: blue;
+  }
+}
