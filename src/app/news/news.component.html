@@ -1,7 +1,12 @@
 <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Latest news from Hand of Death Records</h1>
+    </div>
+  </div>
   <div class="row" *ngFor="let article of articles;">
     <div class="col-md-12">
-      <app-news-preview  
+      <app-news-preview
         [article]="article"
         [index]="article.id"
       >

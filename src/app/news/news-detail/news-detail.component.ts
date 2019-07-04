@@ -29,12 +29,9 @@ export class NewsDetailComponent implements OnInit {
       (params: Params) => {
         this.newsService.getArticle(params.id)
           .subscribe(
-            article => {
-              console.log(article);
-              this.article = article
-            },
+            article => this.article = article,
             error => {
-              console.log(error)
+              // console.log(error)
               this.errorMessage = "Unable to load specified article";
             }
           );

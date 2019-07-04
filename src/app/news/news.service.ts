@@ -51,9 +51,9 @@ export class NewsService {
       .pipe(
         map(article => new Article(
           article.nid[0].value,
-          article.field_title[0].value,
+          article.title[0].value,
           article.body[0].value,
-          article.field_article_image.length ? article.field_article_image[0].url : '',
+          article.field_image.length ? article.field_image[0].url : '',
           article.field_publish_date[0].value
         ))
       )

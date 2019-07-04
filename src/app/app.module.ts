@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { NewsModule } from './news/news.module'
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +19,6 @@ import { NewsModule } from './news/news.module'
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NewsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
