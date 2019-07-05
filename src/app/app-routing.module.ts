@@ -1,24 +1,19 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AboutComponent } from './about/about.component';
-import { NewsComponent } from './news/news.component';
-import { StoreComponent } from './store/store.component';
 
-const appRoutes: Routes = [
-  // { path: '', component: AboutComponent, pathMatch: 'full' },
-  { path: '', component: NewsComponent, pathMatch: 'full' },
-
-  { path: 'artists', loadChildren: './artists/artists.module#ArtistsModule' },
+const routes: Routes = [
+  { path: '', component: AboutComponent, pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
   { path: 'news', loadChildren: './news/news.module#NewsModule' },
-  { path: 'releases', loadChildren: './releases/releases.module#ReleasesModule' },
-  { path: 'store', component: StoreComponent },
+  { path: 'artists', loadChildren: './artist/artist.module#ArtistModule' },
+  { path: 'releases', loadChildren: './release/release.module#ReleaseModule' },
   { path: 'tour', loadChildren: './tour/tour.module#TourModule' },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

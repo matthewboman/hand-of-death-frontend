@@ -1,0 +1,14 @@
+<div class="container news-preview" *ngIf="article">
+  <div class="row">
+    <div class="col-md-3 col-sm-12">
+      <img class="preview-image" src="{{ article.imageUrl }}" />
+    </div>
+    <div class="col-md-9 col-sm-12">
+      <h2>
+        <a [routerLink]="[index]">
+          {{ article.title }}
+        </a>
+      </h2>
+    </div>
+  </div>
+</div>

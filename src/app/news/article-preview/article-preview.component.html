@@ -1,8 +1,0 @@
-<div class="article-preview" *ngIf="article">
-  <h2 class="article-preview-title">{{ article.title }}</h2>
-  <img class="article-image" src="{{article.imageUrl}}" />
-  <!-- Create inside of div in CMS-->
-  <div class="article-preview-body"
-    [innerHTML]="article.body">
-  </div>
-</div>

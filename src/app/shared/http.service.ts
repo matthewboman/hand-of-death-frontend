@@ -1,63 +1,49 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
+import { About } from '../about/about';
 
-import { AboutPage } from '../about/about.model';
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HttpService {
-  private aboutUrl = `https://api.handofdeathrecords.com/api/about`;
-  private aboutPage: AboutPage;
-  private spotifyID = `1a55540a8b9640c1906e22d5a3d78447`;
-  private spotifyPrivate = `8ccfe880e47f404dbc26b31a1c2c174e8ccfe880e47f404dbc26b31a1c2c174e`;
-  private spotifyScopes = `user-read-private user-read-email`;
-  private emailServer = `localhost:3000`;
+  private ABOUT_URL = `https://api.handofdeathrecords.com/api/about/?_format=json`;
+  private SUBSCRIPTION_URL = 'https://api.handofdeathrecords.com/api/add-email?_format=json';
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) { }
 
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.log(errMsg);
-    return Observable.throw(errMsg);
+  private handleError(error: HttpResponseBase | any) {
+    return throwError(error.message);
   }
 
-  getAboutPage(): Observable<AboutPage> {
-    if (this.aboutPage) {
-      return Observable.of(this.aboutPage);
-    }
-    return this.http.get(`${this.aboutUrl}/?_format=json`)
-      .map((res: Response) => res.json()[0])
-      .map(returnedAbout => {
-        const distributors = returnedAbout.field_distributors.map(d => d.value);
-        const about = new AboutPage(
-          returnedAbout.title[0].value,
-          returnedAbout.body[0].value,
-          returnedAbout.field_about_image[0].url,
-          distributors,
-        );
-        return about;
-      })
-      .catch(this.handleError);
+  getAboutPage(): Observable<About> {
+    return this.http.get(this.ABOUT_URL)
+      .pipe(
+        map((res) => res[0]) // Drupal returns an array even though there is only one element
+      )
+      .pipe(
+        map(data => new About(
+            data.title[0].value,
+            data.body[0].value,
+            data.field_about_image[0].url,
+            data.field_distributors.map(d => d.value)
+          )
+        )
+      )
+      .pipe(
+        catchError(this.handleError)
+      );
   }
-
-  // getSpotify(): Observable<any> {
-  //
-  // }
 
   addEmailToList(email: string): Observable<any> {
-    return this.http.post(`https://api.handofdeathrecords.com/api/add-email?_format=json`, { email })
-      .map((res: Response) => res.status)
+    return this.http.post(this.SUBSCRIPTION_URL, { email })
+      .pipe(
+        map((res: any) => res.status)
+      )
+      .pipe(
+        catchError(this.handleError)
+      );
   }
-
 }

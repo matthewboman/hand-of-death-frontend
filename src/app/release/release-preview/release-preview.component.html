@@ -1,0 +1,11 @@
+<a class="card release-preview mb-2" [routerLink]="[index]">
+    <div
+      class="card-body album-art"
+      [ngStyle]="{'background-image': 'url('+ release.albumArtSmall +')'}"
+    >
+      <div class="card-block info text-center">
+        <h2 class="card-title artist">{{ release.artist }}</h2>
+        <p class="card-body title">{{ release.title }}</p>
+      </div>
+    </div>
+</a>

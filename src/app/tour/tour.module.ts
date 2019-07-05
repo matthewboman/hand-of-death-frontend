@@ -21,4 +21,4 @@ import { TourService } from './tour.service';
     TourService
   ]
 })
-export class TourModule {}
+export class TourModule { }

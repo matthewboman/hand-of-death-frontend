@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
-import { TouringArtist } from '../touring-artist.model';
+import { TouringArtist } from '../tour';
 
 @Component({
   selector: 'app-tour-preview',
   templateUrl: './tour-preview.component.html',
-  styleUrls: ['./tour-preview.component.css']
+  styleUrls: ['./tour-preview.component.scss']
 })
 export class TourPreviewComponent {
   @Input() artist: TouringArtist;

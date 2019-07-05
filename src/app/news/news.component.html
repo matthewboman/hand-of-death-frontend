@@ -1,9 +1,16 @@
-<div class="row news-component">
-  <div class="col-md-10 col-md-offset-1">
-    <app-article-preview
-      *ngFor="let article of articles;"
-      [article]="article"
-      [index]="article.id">
-    </app-article-preview>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Latest news from Hand of Death Records</h1>
+    </div>
+  </div>
+  <div class="row" *ngFor="let article of articles;">
+    <div class="col-md-12">
+      <app-news-preview
+        [article]="article"
+        [index]="article.id"
+      >
+      </app-news-preview>
+    </div>
   </div>
 </div>

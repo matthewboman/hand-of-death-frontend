@@ -1,16 +1,15 @@
-<div class="row tour-component">
-  <div class="col-md-3 preview">
-    <div class="songkick-container">
-      <img class="songkick" src="../../assets/img/powered-by-songkick-white.png" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-sm-12">
+      <img class="songkick" src="assets/powered-by-songkick-white.png" />
+      <app-tour-preview
+        *ngFor="let artist of touringArtists;"
+        [artist]="artist"
+        [index]="artist.artistId">
+      </app-tour-preview>
     </div>
-    <app-tour-preview
-      *ngFor="let artist of touringArtists;"
-      [artist]="artist"
-      [index]="artist.artist_id">
-    </app-tour-preview>
-
-  </div>
-  <div class="col-md-9">
-    <router-outlet></router-outlet>
+    <div class="col-md-9 col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

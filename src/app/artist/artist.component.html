@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 col-sm-12">
+      <app-artist-preview
+        *ngFor="let artist of artists;"
+        [artist]="artist"
+        [index]="artist.id">
+      </app-artist-preview>
+    </div>
+    <div class="col-md-10 col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

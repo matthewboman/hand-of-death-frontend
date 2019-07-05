@@ -1,17 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'app';
-  isMobile: Boolean = false;
-
-  ngOnInit () {
-    this.isMobile = ( typeof window.orientation !== "undefined") ||
-      (navigator.userAgent.indexOf('IEMobile') !== -1 ) ||
-      (window.innerWidth <= 480) ? true : false;
-  };
+export class AppComponent {
+  title = 'hand-of-death-frontend';
 }

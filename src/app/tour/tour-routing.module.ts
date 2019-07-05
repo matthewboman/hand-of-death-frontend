@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TourComponent } from './tour.component';
 import { TourDetailComponent } from './tour-detail/tour-detail.component';
 
-const tourRoutes: Routes = [
+const routes: Routes = [
   {
     path: '',
     component: TourComponent,
@@ -12,10 +12,10 @@ const tourRoutes: Routes = [
       { path: ':id', component: TourDetailComponent }
     ]
   }
-]
+];
 
 @NgModule({
-  imports: [ RouterModule.forChild(tourRoutes) ],
+  imports: [ RouterModule.forChild(routes) ],
   exports: [ RouterModule ]
 })
 export class TourRoutingModule {}

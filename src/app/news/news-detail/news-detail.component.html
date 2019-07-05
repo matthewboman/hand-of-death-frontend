@@ -1,0 +1,14 @@
+<div class="article" *ngIf="article">
+  <div
+    class="hero-image mb-4"
+    [ngStyle]="{'background-image': 'url('+ article.imageUrl +')'}"
+  >
+    <div class="hero-text">
+      <h2 class="text-center">{{ article.title }}</h2>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Create inside of div in CMS-->
+    <div [innerHTML]="article.body"></div>
+  </div>
+</div>

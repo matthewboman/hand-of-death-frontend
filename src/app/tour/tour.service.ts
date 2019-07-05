@@ -1,63 +1,62 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
-
-import { TouringArtist } from './touring-artist.model';
-import { TourDate } from './tour-date.model';
+import { TourDate, TouringArtist } from './tour';
 
 @Injectable()
 export class TourService {
-  private touringUrl: string = `https://api.handofdeathrecords.com/api/tour`;
-  private SONGKICK_API_KEY: string = `wBW2144SSOTFdqaF`;
-  private touringArtists: TouringArtist[];
+  private URL = 'https://api.handofdeathrecords.com/api/tour?_format=json';
+  private SONGKICK_URL = 'https://api.songkick.com/api/3.0/artists';
+  private SONGKICK_API_KEY = `wBW2144SSOTFdqaF`;
+  private tourDates: TourDate[];
+  private touringArtist: TouringArtist[];
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    return Observable.throw(errMsg);
+  private handleError(error: HttpResponseBase | any) {
+    return throwError(error.message);
   }
 
-  getTouringBands(): Observable<any> {
-    if (this.touringArtists) {
-      return Observable.of(this.touringArtists);
+  getTouringArtists(): Observable<TouringArtist[]> {
+    if (this.touringArtist) {
+      return of(this.touringArtist);
     }
-    return this.http.get(`${this.touringUrl}?_format=json`)
-      .map((res: Response) => res.json())
-      .map(touringArtists => {
-        const artists = touringArtists.map(artist => new TouringArtist(
-          artist.field_touring_artist_name.length ? artist.field_touring_artist_name[0].value : '',
-          artist.field_touring_artist_id.length ? artist.field_touring_artist_id[0].value : '',
-        ))
-        this.touringArtists = artists;
-        return artists;
-      })
-      .catch(this.handleError);
-  }
-
-  getTourDates(artist_id: string): Observable<any> {
-    return this.http.get(`https://api.songkick.com/api/3.0/artists/${artist_id}/calendar.json?apikey=${this.SONGKICK_API_KEY}`)
-      .map((res: Response) => res.json().resultsPage.results.event || [])
-      .map(concerts => concerts
-        .map(concert => new TourDate(
-          concert.displayName,
-          new Date(concert.start.date),
-          concert.location.city,
-          concert.uri
-        ))
+    return this.http.get(this.URL)
+      .pipe(
+        map((data: any[]) => {
+          const artists = data.map(a => new TouringArtist(
+            a.field_touring_artist_name.length ? a.field_touring_artist_name[0].value : '',
+            a.field_touring_artist_id.length ? a.field_touring_artist_id[0].value : ''
+          ));
+          this.touringArtist = artists;
+          return artists;
+        })
       )
-      .catch(this.handleError);
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
+  getTourDates(id: string): Observable<TourDate[]> {
+    return this.http.get(`${this.SONGKICK_URL}/${id}/calendar.json?apikey=${this.SONGKICK_API_KEY}`)
+      .pipe(
+        map((res: any) => {
+          const event = res.resultsPage.results.event || [];
+          return event;
+        })
+      )
+      .pipe(
+        map((tourDates: any[]) => tourDates.map(d => new TourDate(
+          d.displayName,
+          new Date(d.start.date),
+          d.location.city,
+          d.uri
+        )))
+      )
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 }

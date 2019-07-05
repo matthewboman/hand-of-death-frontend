@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  min-height: 100%; // used percent instead of vh due to safari bug.
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+/**
+ * Globals
+ */
+
+// tour-preview
+.preview {
+  display: block;
+  color: #fff;
+
+  &:hover {
+    text-decoration: none;
+    text-shadow: blue;
+  }
+}

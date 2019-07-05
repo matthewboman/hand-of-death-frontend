@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ArticleDetailComponent } from './article-detail/article-detail.component';
-import { ArticleListComponent } from './article-list/article-list.component';
-// import { ArticlePreviewComponent } from './article-preview/article-preview.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { NewsPreviewComponent } from './news-preview/news-preview.component';
 import { NewsComponent } from './news.component';
 import { NewsRoutingModule } from './news-routing.module';
 import { NewsService } from './news.service';
 
 @NgModule({
   declarations: [
-    ArticleDetailComponent,
-    ArticleListComponent,
-    // ArticlePreviewComponent,
+    NewsDetailComponent,
+    NewsPreviewComponent,
     NewsComponent
   ],
   imports: [

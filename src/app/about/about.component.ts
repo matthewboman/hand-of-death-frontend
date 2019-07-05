@@ -1,48 +1,57 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
-import { AboutPage } from './about.model';
+import { About } from './about';
 import { HttpService } from '../shared/http.service';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit, OnDestroy {
-  aboutPage: AboutPage;
-  errorMessage: string;
-  email: string;
   subscription: Subscription;
+  aboutPage: About;
+  email: string;
+  errorMessage: string;
+  successMessage: string;
 
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.subscription = this.httpService.getAboutPage().subscribe(
       aboutPage => this.aboutPage = aboutPage,
-      error => this.errorMessage = <any>error
+      error => {
+        // console.log(error);
+        // this.errorMessage = "";
+      }
     );
   }
 
-  validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.successMessage = '';
+    this.errorMessage = '';
   }
 
-  submitEmail() {
-    if (this.validateEmail(this.email)) {
-      this.errorMessage = "";
-      this.httpService.addEmailToList(this.email).subscribe(
-        status => this.email = "",
-        error => this.errorMessage = "There was an error adding you to the list",
-      )
+  submitEmail(form: NgForm): void {
+    const { value : { email } } = form;
+    this.errorMessage = '';
+
+    if (this.validateEmail(email)) {
+      this.httpService.addEmailToList(email).subscribe(
+        status => this.successMessage = 'Thank you for subscribing',
+        error => this.errorMessage = 'We were unable to add your email'
+      );
     } else {
       this.errorMessage = 'Please enter a valid email';
     }
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  validateEmail(email: string): boolean {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   }
 
 }

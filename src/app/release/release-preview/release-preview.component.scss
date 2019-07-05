@@ -1,0 +1,47 @@
+.release-preview {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 375px;
+  height: 350px;
+  display: block;
+  color: #fff;
+
+  .album-art {
+    height: inherit;
+    width: inherit;
+    display: block;
+    background-size: cover;
+
+    .info {
+      background-color: rgba(15, 55, 90, 0.3);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      .artist {
+        top: 40%;
+        left: 0;
+        right: 0;
+        position: absolute;
+      }
+
+      .title {
+        top: 60%;
+        left: 0;
+        right: 0;
+        position: absolute;
+      }
+    }
+  }
+}
+
+/**
+ * Bootstrap overrides
+ */
+.card {
+  border: none;
+  border-radius: 0.5rem;
+}

@@ -2,21 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NewsComponent } from './news.component';
-import { ArticleDetailComponent } from './article-detail/article-detail.component';
-import { ArticleListComponent } from './article-list/article-list.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
 
-const newsRoutes: Routes = [
-  {
-    path: '',
-    component: NewsComponent,
-    children: [
-      { path: '', component: ArticleListComponent },
-      { path: ':id', component: ArticleDetailComponent}
-    ]
-  }
+const routes: Routes = [
+  { path: '', component: NewsComponent },
+  { path: ':id', component: NewsDetailComponent }
 ]
+
 @NgModule({
-  imports: [ RouterModule.forChild(newsRoutes) ],
+  imports: [ RouterModule.forChild(routes) ],
   exports: [ RouterModule ]
 })
 export class NewsRoutingModule {}
