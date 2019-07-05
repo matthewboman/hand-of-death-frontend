@@ -1,3 +1,13 @@
+:host {
+  display: flex;
+  min-height: 100%; // used percent instead of vh due to safari bug.
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
 /**
  * Globals
  */

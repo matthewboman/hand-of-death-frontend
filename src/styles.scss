@@ -1,11 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap.scss";
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   color: #fff;
   font-size: 1.2rem;
 }
 
+/**
+ * Globals
+ */
 a {
   color: #fff;
 
